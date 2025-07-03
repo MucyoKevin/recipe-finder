@@ -1,0 +1,20 @@
+import React from 'react';
+import { useFavorites } from '../context/FavoritesContext';
+import RecipeGrid from '../app/components/recipe/RecipeGrid';
+
+const Favorites: React.FC = () => {
+  const { favorites } = useFavorites();
+
+  return (
+    <div className="favorites min-h-screen bg-primary flex flex-col items-center p-6">
+      <h1 className="text-3xl font-bold text-secondary mb-6">My Favorite Recipes</h1>
+      {favorites.length === 0 ? (
+        <p className="text-gray-600">No favorite recipes yet. Start exploring!</p>
+      ) : (
+        <RecipeGrid recipes={favorites} />
+      )}
+    </div>
+  );
+};
+
+export default Favorites; 

@@ -1,26 +1,23 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { getRecipeDetails } from '../services/spoonacularAPI';
 // import IngredientsList from '../app/components/recipe/IngredientsList';
 // import InstructionsList from '../app/components/recipe/InstructionsList';
 // import NutritionInfo from '../app/components/recipe/NutritionInfo';
 
 interface RecipeDetailsProps {
-  id?: string;
+  id: string;
 }
 
 const RecipeDetails: React.FC<RecipeDetailsProps> = ({ id }) => {
-  const router = useRouter();
-  const recipeId = id || (router.query.id as string);
   const [recipe, setRecipe] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!recipeId) return;
+    if (!id) return;
     const fetchRecipe = async () => {
       try {
-        const data = await getRecipeDetails(recipeId);
+        const data = await getRecipeDetails(id);
         setRecipe(data);
       } catch (error) {
         console.error('Error fetching recipe:', error);
@@ -29,7 +26,7 @@ const RecipeDetails: React.FC<RecipeDetailsProps> = ({ id }) => {
       }
     };
     fetchRecipe();
-  }, [recipeId]);
+  }, [id]);
 
   if (loading) return <div className="loading text-secondary font-semibold">Loading recipe...</div>;
   if (!recipe) return <div className="error text-secondary font-semibold">Recipe not found</div>;

@@ -11,10 +11,12 @@ const Home: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [filters, setFilters] = useState({});
+  const [hasSearched, setHasSearched] = useState(false);
 
   const handleSearch = useCallback(async (query: string) => {
     setLoading(true);
     setError('');
+    setHasSearched(true);
     try {
       const data = await searchRecipes(query, filters);
       setRecipes(data.results);
@@ -26,11 +28,11 @@ const Home: React.FC = () => {
   }, [filters]);
 
   return (
-    <div className="min-h-screen bg-primary flex flex-col items-center">
+    <div className="home min-h-screen bg-primary flex flex-col items-center">
       <SearchBar onSearch={handleSearch} />
       {/* <FilterPanel filters={filters} setFilters={setFilters} /> */}
       {error && <div className="error text-secondary font-semibold my-2">{error}</div>}
-      <RecipeGrid recipes={recipes} loading={loading} />
+      <RecipeGrid recipes={recipes} loading={loading} hasSearched={hasSearched} />
     </div>
   );
 };

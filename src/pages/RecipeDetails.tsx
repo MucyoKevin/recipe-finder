@@ -1,8 +1,8 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { getRecipeDetails } from '../services/spoonacularAPI';
-// import IngredientsList from '../app/components/recipe/IngredientsList';
-// import InstructionsList from '../app/components/recipe/InstructionsList';
+import IngredientsList from '../app/components/recipe/IngredientsList';
+import InstructionsList from '../app/components/recipe/InstructionsList';
 // import NutritionInfo from '../app/components/recipe/NutritionInfo';
 
 interface RecipeDetailsProps {
@@ -41,8 +41,8 @@ const RecipeDetails: React.FC<RecipeDetailsProps> = ({ id }) => {
         </div>
       </div>
       <div className="recipe-content w-full max-w-3xl bg-white rounded-lg shadow p-6">
-        {/* <IngredientsList ingredients={recipe.extendedIngredients} /> */}
-        {/* <InstructionsList instructions={recipe.analyzedInstructions} /> */}
+        <IngredientsList ingredients={recipe.extendedIngredients} />
+        <InstructionsList instructions={recipe.analyzedInstructions} />
         {/* <NutritionInfo nutrition={recipe.nutrition} /> */}
       </div>
     </div>

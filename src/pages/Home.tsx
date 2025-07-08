@@ -32,7 +32,7 @@ const Home: React.FC = () => {
       <SearchBar onSearch={handleSearch} />
       {/* <FilterPanel filters={filters} setFilters={setFilters} /> */}
       {error && <div className="error text-secondary font-semibold my-2">{error}</div>}
-      <RecipeGrid recipes={recipes} loading={loading} hasSearched={hasSearched} />
+      <RecipeGrid recipes={recipes} loading={loading} hasSearched={hasSearched} /> 
     </div>
   );
 };
